@@ -12,6 +12,7 @@
  * Usage: ./contacts
  * 
  **/
+ 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -30,10 +31,25 @@ typedef struct Contact
     struct Contact* next;
 }Contact;
 
+// function prototypes
+Contact* load_contacts();
 Contact* add_to_list(Contact* head, Contact* new_contact);
 void print_contacts(Contact* head);
 
 int main(int argc, char* argv[])
+{
+    Contact* contacts_list = load_contacts();
+
+    print_contacts(contacts_list);
+    return 0;
+}
+
+/*
+ * Load contacts from file to memory
+ * Returns pointer to head of contact linked list 
+ */
+ 
+Contact* load_contacts()
 {
     Contact* head = NULL;
 
@@ -42,7 +58,7 @@ int main(int argc, char* argv[])
     if (fp == NULL)
     {
         printf("File not successfully opened\n");
-        return -1;
+        return NULL;
     }
 
     Contact new_contact;
@@ -53,11 +69,16 @@ int main(int argc, char* argv[])
     }
 
     fclose(fp);
-
-    print_contacts(head);
-    return 0;
+    return head;
 }
 
+/*
+ * Add a contact to linked list of contacts
+ * Parameters: HEAD, pointer to linked list head
+ *             NEW_CONTACT, pointer to new contact
+ * Returns: pointer to linked list head
+ */
+ 
 Contact* add_to_list(Contact* head, Contact* new_contact)
 {
     // new node
@@ -108,6 +129,10 @@ Contact* add_to_list(Contact* head, Contact* new_contact)
     return head;
 }
 
+/*
+ * Print all contacts in memory
+ */
+ 
 void print_contacts(Contact* head)
 {
     while (head != NULL)
