@@ -32,16 +32,64 @@ typedef struct Contact
 }Contact;
 
 // function prototypes
+void main_menu(Contact* head);
 Contact* load_contacts();
 Contact* add_to_list(Contact* head, Contact* new_contact);
 void print_contacts(Contact* head);
+void add_contact();
+void edit_contact();
+void remove_contact();
 
 int main(int argc, char* argv[])
 {
     Contact* contacts_list = load_contacts();
 
-    print_contacts(contacts_list);
+    main_menu(contacts_list);
+    //print_contacts(contacts_list);
     return 0;
+}
+
+/*
+ * Displays the main menu and handles user selection
+ * Paraeter: HEAD, pointer to contact linked list head
+ */
+ 
+void main_menu(Contact* head)
+{
+    // menu loop
+    while (1)
+    {
+        printf("Main Menu\n");
+        printf("1. Add Contact\n");
+        printf("2. Edit Contact\n");
+        printf("3. Remove Contact\n");
+        printf("4. Print All Contacts\n");
+        printf("5. Quit\n\n");
+        
+        printf("Please select an option (1/2/3/4/5): ");
+        
+        // a character is expected from the user
+        char option;
+        scanf("%c", &option);
+        
+        switch (option)
+        {
+            case '1':
+                //add_contact();
+                break;
+            case '2':
+                //edit_contact();
+                break;
+            case '3':
+                //remove_contact();
+                break;
+            case '4':
+                print_contacts(head);
+                break;
+            case '5':
+                return;
+        }
+    }
 }
 
 /*
