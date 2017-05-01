@@ -6,9 +6,8 @@
  * This program is implemented as a linked list with each contact as a
  * node in the list. The contacts are read from a plaintext file named
  * .contacts with the format
- * name:phone number:email
- * The name email and phone number cannot contain the ":" character 
- * which is used as a delimeter
+ * name phone_number email
+ * 
  * 
  * Usage: ./contacts
  * 
