@@ -59,7 +59,7 @@ void main_menu(Contact* head)
     // menu loop
     while (1)
     {
-        printf("Main Menu\n");
+        printf("MAIN MENU\n");
         printf("1. Add Contact\n");
         printf("2. Edit Contact\n");
         printf("3. Remove Contact\n");
@@ -69,8 +69,11 @@ void main_menu(Contact* head)
         printf("Please select an option (1/2/3/4/5): ");
         
         // a character is expected from the user
+        // if more than one charachter is typed, it gets the first one 
+        // and discards the rest
         char option;
-        scanf("%c", &option);
+        scanf(" %c", &option);
+        while(option != '\n' && getchar() != '\n');
         
         switch (option)
         {
