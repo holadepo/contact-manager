@@ -12,7 +12,7 @@
  * Usage: ./contacts
  * 
  **/
- 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -36,7 +36,7 @@ void main_menu(Contact* head);
 Contact* load_contacts();
 Contact* add_to_list(Contact* head, Contact* new_contact);
 void print_contacts(Contact* head);
-void add_contact();
+Contact* new_contact(Contact* head);
 void edit_contact();
 void remove_contact();
 
@@ -59,7 +59,7 @@ void main_menu(Contact* head)
     // menu loop
     while (1)
     {
-        printf("MAIN MENU\n");
+        printf("\n# MAIN MENU\n");
         printf("1. Add Contact\n");
         printf("2. Edit Contact\n");
         printf("3. Remove Contact\n");
@@ -78,7 +78,7 @@ void main_menu(Contact* head)
         switch (option)
         {
             case '1':
-                //add_contact();
+                head = new_contact(head);
                 break;
             case '2':
                 //edit_contact();
@@ -124,7 +124,7 @@ Contact* load_contacts()
 }
 
 /*
- * Add a contact to linked list of contacts
+ * Add a contact to linked list of contacts, which is sorted by name
  * Parameters: HEAD, pointer to linked list head
  *             NEW_CONTACT, pointer to new contact
  * Returns: pointer to linked list head
@@ -140,7 +140,7 @@ Contact* add_to_list(Contact* head, Contact* new_contact)
     strcpy(new_node->name, new_contact->name);
     strcpy(new_node->phone, new_contact->phone);
     strcpy(new_node->email, new_contact->email);
-
+    
     // empty list
     if (head == NULL)
     {
@@ -193,4 +193,29 @@ void print_contacts(Contact* head)
         printf("EMAIL: %s\n\n", head->email);
         head = head->next;
     }
+}
+
+/*
+ * Creates a new contact and appends it to list of contacts
+ * Parameter: HEAD, pointer to linked list head
+ * Returns: pointer to linked list head
+ */
+ 
+Contact* new_contact(Contact* head)
+{
+    // new node
+    Contact new_contact;
+    new_contact.next = NULL;
+    
+    // new contact details
+    printf("# ENTER CONTACT DETAILS\n\n");
+    printf("Name: ");
+    scanf("%s", new_contact.name);
+    printf("Phone: ");
+    scanf("%s", new_contact.phone);
+    printf("email: ");
+    scanf("%s", new_contact.email);
+
+    return add_to_list(head, &new_contact);
+    
 }
